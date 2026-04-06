@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['finance-backendproduction.up.railway.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -103,3 +103,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
+CSRF_TRUSTED_ORIGINS = [
+    'https://finance-backendproduction.up.railway.app'
+]
