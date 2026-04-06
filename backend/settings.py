@@ -1,9 +1,13 @@
 import os
 from pathlib import Path
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-your-default-key')
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-_58ney5fu!ue^rgf8o)*0ax9k6wi*k^on)24xtr1z&q8q$i$w!'
+)
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
@@ -22,6 +26,7 @@ INSTALLED_APPS = [
     'users',
     'finance',
     'dashboard',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +83,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 AUTH_USER_MODEL = 'users.User'
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -89,4 +96,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
